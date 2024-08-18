@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+// Hàm sinh các hoán vị và in ra kết quả
+void generate_permutations(string &X) {
+    set<string> results;  // Sử dụng set để đảm bảo không có kết quả trùng lặp và các kết quả theo thứ tự tăng dần
+    // Sinh tất cả các hoán vị có thể của chuỗi X
+    sort(X.begin(), X.end());
+    do {
+        results.insert(X);
+    } while (next_permutation(X.begin(), X.end()));
+    // In ra tất cả các kết quả đã lưu trữ
+    for (const string &s : results) {
+        //Dùng hàm stoll chuyển xâu thành số long long => bỏ được số 0 ở đầu tiên
+        cout << stoll(s) << endl;
+    }
+}
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        string N;
+        cin >> N;
+        generate_permutations(N);
+    }
+}
