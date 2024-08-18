@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<long long> fib_lengths(46);
+void precompute_fib_lengths() {
+    fib_lengths[0] = 1; // Độ dài của F[0] = "A"
+    fib_lengths[1] = 1; // Độ dài của F[1] = "B"
+    for (int i = 2; i <= 45; ++i) {
+        fib_lengths[i] = fib_lengths[i-1] + fib_lengths[i-2];
+    }
+}
+int count_B(int n, long long k) {
+    if (n == 0) return 0;
+    if (n == 1) return k >= 1 ? 1 : 0;
+    
+    if (k <= fib_lengths[n-1]) {
+        return count_B(n-1, k);
+    } else {
+        return count_B(n-1, fib_lengths[n-1]) + count_B(n-2, k - fib_lengths[n-1]);
+    }
+}
+int main() {
+    precompute_fib_lengths();
+    int t;
+    cin >> t;
+    
+    while (t--) {
+        int n;
+        long long k;
+        cin >> n >> k;
+        cout << count_B(n, k) << endl;
+    }
+    
+    return 0;
+}
