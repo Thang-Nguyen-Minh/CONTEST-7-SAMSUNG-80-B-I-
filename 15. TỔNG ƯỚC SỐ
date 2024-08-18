@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+const int MAX_N = 1000000;
+int main() {
+    int a, b;
+    cin >> a >> b;
+    // Tạo mảng để lưu tổng các ước số không tính chính nó
+    vector<int> sumDiv(MAX_N + 1, 0);
+    // Tính tổng các ước số cho tất cả các số từ 1 đến MAX_N
+    for (int i = 1; i <= MAX_N; ++i) {
+        for (int j = 2 * i; j <= MAX_N; j += i) {
+            sumDiv[j] += i;
+        }
+    }
+    // Đếm số lượng số thỏa mãn điều kiện
+    int count = 0;
+    for (int i = a; i <= b; ++i) {
+        if (sumDiv[i] > i) {
+            ++count;
+        }
+    }
+    // Xuất kết quả
+ 	cout << count <<endl;
+}
