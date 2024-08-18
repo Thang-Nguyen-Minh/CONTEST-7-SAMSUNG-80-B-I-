@@ -1,3 +1,5 @@
+#include<bits/stdc++.h>
+using namespace std;
 int pt(int n){
 	int res;
 	for(int i=2;i<=sqrt(n);i++){
