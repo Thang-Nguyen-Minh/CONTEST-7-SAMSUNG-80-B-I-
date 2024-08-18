@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namepspace std;
+long long findMinN(long long P) {
+  if (P == 1) return 1;
+  vector<int> digits;
+  for (int i = 9; i >= 2; i--) {
+      while (P % i == 0) {
+          digits.push_back(i);
+          P /= i;
+      }
+  }
+  if (P > 1) return -1;  // Nếu còn thừa số nguyên tố lớn hơn 9
+  sort(digits.begin(), digits.end());  // Để số nhỏ nhất
+  long long result = 0;
+  for (int digit : digits) {
+      result = result * 10 + digit;
+  }
+  return result;
+}
+int main() {
+  int T;
+    cin >> T;
+    while (T--) {
+        long long P;
+        cin >> P;
+        cout << findMinN(P) << endl;
+    }
+    return 0;
+}
