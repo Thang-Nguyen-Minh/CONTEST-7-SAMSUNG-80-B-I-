@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+//BÀI TẬP 1 : SẮP XẾP CHẴN LẺ
+int main(){
+	int n;cin>>n;
+	int a[n];
+	for(int &x:a) cin>>x;
+	vector<int> v1,v2;
+	for(int x:a){
+		if(x%2==0) v1.push_back(x);
+		else v2.push_back(x);
+	}
+	sort(v1.begin(),v1.end());
+	sort(v2.begin(),v2.end(),greater<int>());
+	int x=0,y=0;
+	for(int i:a){
+		if(i%2==0) cout<<v1[x++]<<" ";
+		else cout<<v2[y++]<<" ";
+	}
+	cout<<endl;
+}
