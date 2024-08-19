@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+//Gán -1 trực tiếp: Nếu bạn gán trực tiếp v[i] = -1
+//giá trị -1 sẽ không được coi là một ký tự hợp lệ trong bảng mã ASCII tiêu chuẩn (vì giá trị char hợp lệ thường nằm trong khoảng từ 0 đến 255)
+//Có thể thay thế bằng các ký tự tạm thời : '?';'!','#','*',...
+void thaythe(string &s){
+	stack<int> st;
+	vector<char> v(s.size());
+	for(int i=0;i<s.size();i++){
+		if(s[i]=='(') st.push(i);
+		else if(s[i]==')'){
+			if(!st.empty()){
+				int x=st.top();
+				st.pop();
+				v[x]='0';
+				v[i]='1';	
+			}
+			else v[i]='9';
+		}
+		else v[i]=s[i];
+	}
+	while(!st.empty()){
+		int a=st.top();
+		st.pop();
+		v[a]='9';
+	}
+	for(char x:v){
+		if(x=='9') cout<<-1;
+		else cout<<x;
+	} 
+	cout<<endl;
+}
+int main(){
+	int t;cin>>t;
+	cin.ignore();
+	while(t--){
+		string s;
+		getline(cin,s);
+		thaythe(s);
+	}
+}
